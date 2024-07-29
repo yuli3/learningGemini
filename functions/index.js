@@ -1,5 +1,5 @@
 const { onRequest } = require("firebase-functions/v2/https");
-const { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } = require("@google/generative-ai");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const sharp = require('sharp');
 const os = require('os');
 const path = require('path');
@@ -139,13 +139,6 @@ exports.analyzeImage = onRequest({cors:["https://learninggemini-947bf.web.app"]}
 
                 const model = genAI.getGenerativeModel({
                     model: 'gemini-1.5-pro',
-                    safetySetting: [
-                        { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE },
-                        { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
-                        { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
-                        { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE },
-                        { category: HarmCategory.HARM_CATEGORY_UNSPECIFIED, threshold: HarmBlockThreshold.BLOCK_NONE },
-                    ],
                     generationConfig: { responseMimeType: "application/json" }
                 });
 
