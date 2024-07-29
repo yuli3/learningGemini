@@ -178,6 +178,7 @@ async function getRecommendations() {
 
 // Display results
 function displayResults(data) {
+    resultDiv.style.display = 'block';
     let resultHTML = '<h2>Career Recommendations</h2>';
 
     for (let i = 1; i <= 3; i++) {
