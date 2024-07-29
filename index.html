@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Analysis</title>
+    <style>
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: none;
+        }
+        #loading {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="imageInput" accept="image/*" required>
+    <div>
+      <button id="analyzeButton" type="button">Analyze Image</button>
+    </div>
+    <div id="loading">Analyzing...</div>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('analyzeButton').addEventListener('click', async function(event) {
+            // Prevent any default behavior
+            event.preventDefault();
+            event.stopPropagation();
+
+            const imageInput = document.getElementById('imageInput');
+            const resultDiv = document.getElementById('result');
+            const loadingDiv = document.getElementById('loading');
+
+            if (!imageInput.files || imageInput.files.length === 0) {
+                alert('Please select an image file.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image', imageInput.files[0]);
+
+            resultDiv.style.display = 'none';
+            loadingDiv.style.display = 'block';
+
+            try {
+                const response = await fetch('https://5001-idx-geminiproject-1722076088314.cluster-nx3nmmkbnfe54q3dd4pfbgilpc.cloudworkstations.dev/learninggemini-947bf/us-central1/analyzeImage', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'include',
+                    mode: 'cors'
+                });
+
+                event.preventDefault();
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+
+                const data = await response.json();
+
+                console.log("RECEIVED", data);
+
+                resultDiv.innerHTML = `
+                    <h3>Analysis Result:</h3>
+                    <p>Score: ${data.score}</p>
+                    <p>Reason: ${data.reason}</p>
+                `;
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = 'An error occurred while analyzing the image: ' + error.message;
+            } finally {
+                loadingDiv.style.display = 'none';
+                resultDiv.style.display = 'block';
+            }
+
+            // Prevent any potential delayed refresh
+            return false;
+        });
+
+        // Prevent any form submission on the page
+        document.addEventListener('submit', function(event) {
+            event.preventDefault();
+            return false;
+        });
+
+        // Prevent any unload events
+        window.onbeforeunload = function() {
+            return "Are you sure you want to leave this page?";
+        };
+    </script>
+</body>
+</html>

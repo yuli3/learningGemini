@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@google/generative-ai": "^0.16.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.8.0"
+  }
+}

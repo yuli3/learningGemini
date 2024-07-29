@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="description" content="Find the perfect career path based on your image, personality, and favorite subjects using our AI-powered recommendation system.">
+  <meta name="keywords" content="career recommendation, AI career analysis, personality-based careers, image analysis careers">
+  <meta name="author" content="AHOXY">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://learninggemini-947bf.web.app/">
+  <meta property="og:title" content="AI-Powered Career Recommendation Analysis">
+  <meta property="og:description" content="Discover your ideal career path using our advanced AI analysis of your image, personality traits, and favorite subjects.">
+  <meta property="og:image" content="https://learninggemini-947bf.web.app/og.webp">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://learninggemini-947bf.web.app/">
+  <meta property="twitter:title" content="AI-Powered Career Recommendation Analysis">
+  <meta property="twitter:description" content="Discover your ideal career path using our advanced AI analysis of your image, personality traits, and favorite subjects.">
+  <meta property="twitter:image" content="https://learninggemini-947bf.web.app/og.webp">
+
+  <link rel="canonical" href="https://learninggemini-947bf.web.app/">
+  <meta name="color-scheme" content="dark light">
+  <meta name="robots" content="index, follow">  
+  <meta name="googlebot" content="index, follow">
+  <meta name="yeti" content="index, follow">
+  <meta name="yandexbot" content="index, follow">
+  <meta name="pinterest" content="index, follow">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  
+  
+  <title>Career Recommendation Analysis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="container">
+    <h1>Career Recommendation Analysis</h1>
+    <h3>We can help you find the right career for you based on Your Image, Your Personality, Your Favorite Subject</h3>
+    <p><small>Gemini Project 2024 inspired by youtuber jocoding</small></p>
+  </header>
+  <main class="container">
+    
+    <div class="input-section">
+      <h2>Upload Your Photo</h2>
+      <div id="dropZone" class="drop-zone">
+        <p>Drag and drop your image here, or click to select a file</p>
+        <input type="file" id="imageInput" accept="image/*" hidden>
+      </div>
+      <img id="imagePreview" alt="Image preview" class="image-preview">
+    </div>
+
+    <div class="input-section">
+      <h2>Select Your Personality Traits</h2>
+      <div id="personalitySelect" class="multi-select"></div>
+    </div>
+
+    <div class="input-section">
+      <h2>Select Your Favorite School Subjects</h2>
+      <div id="subjectsSelect" class="multi-select"></div>
+    </div>
+
+    <div class="button-section">
+      <button id="analyzeButton" class="button">Analyze and Recommend Careers</button>
+    </div>
+
+    <div id="loading" class="loading">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      <br />
+      Analyzing... Please wait.
+    </div>
+
+    <div id="result" class="result-section" style="display: none;"></div>
+
+    <div class="button-section">
+      <button id="moreRecommendations" class="button" style="display: none;">
+        Get More Recommendations</button>
+    </div>
+
+    
+  </main>
+
+  <footer class="container">
+    <div id="translate"></div>
+    <br />
+    <br />
+    <div id="share" class="a2a_kit a2a_kit_size_32 a2a_default_style">
+      <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_facebook"></a>
+      <a class="a2a_button_email"></a>
+      <a class="a2a_button_blogger"></a>
+      <a class="a2a_button_telegram"></a>
+      <a class="a2a_button_reddit"></a>
+      <a class="a2a_button_x"></a>
+      <a class="a2a_button_line"></a>
+      <a class="a2a_button_kakao"></a>
+      <a class="a2a_button_whatsapp"></a>
+      <a class="a2a_button_linkedin"></a>
+      <a class="a2a_button_pinterest"></a>
+    </div>
+  </footer>
+
+  <script async src="https://static.addtoany.com/menu/page.js"></script>
+  <script>
+    function onLoadTranslate() {
+      new google.translate.TranslateElement(
+          {pageLanguage: 'en'},
+          'translate'
+      );
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=onLoadTranslate"></script>
+  <script type="module" src="script.js"></script>
+</body>
+
+</html>

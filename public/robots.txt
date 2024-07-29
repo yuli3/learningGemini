@@ -1,0 +1,4 @@
+User-agent: *
+Allow:/
+
+Sitemap: https://learninggemini-947bf.web.app/sitemap.xml
